@@ -15,17 +15,24 @@ public class MessageUtils {
 		
 		byte[] segment = null;
 		byte[] data;
-		
+
 		// TODO - START
-		
-		// encapulate/encode the payload data of the message and form a segment
-		// according to the segment format for the messaging layer
+		 // check format so it matches the message object
+		if (message == null || message.getData().length > Byte.MAX_VALUE) {
+			throw new IllegalArgumentException("Wrong payload");
+		}
 
+		// format segment
+		segment = new byte[1 + message.getData().length]; // +1 fordi vi har en header på 1 byte
+ 		data = message.getData(); // henter melding
+		segment[0] = (byte) data.length; // segment header
 
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-			
+		// payload må starte fra 1.
+		// fyller segmentet med data
+		for (int i = 1; i < data.length; i++) {
+			segment[i] = data[i-1];
+		}
+
 		// TODO - END
 		return segment;
 		
@@ -37,9 +44,18 @@ public class MessageUtils {
 		
 		// TODO - START
 		// decapsulate segment and put received payload data into a message
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+
+		int segmentLength = segment[0]; // read segment length
+		byte[] data = new byte[segmentLength]; // create new object to transfer the data to
+
+		// transfer data from the segment to our new created data object
+		for (int i = 1; i < segmentLength; i++ ) {
+			data[i-1] = segment[i];
+		}
+
+		// give the value of our created object
+		message = new Message(data);
+
 		
 		// TODO - END
 		

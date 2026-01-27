@@ -11,7 +11,7 @@ public class Message {
 	public Message(byte[] data) {
 		
 		// TODO - START
-
+			// hvis data er null, eller er større enn 127 får man error
 		if (data == null || data.length > Byte.MAX_VALUE) {
 				throw new IllegalArgumentException("data cannot be null or longer than 127 bytes");
 		}
