@@ -9,13 +9,18 @@ public class RPCUtils {
 	public static byte[] encapsulate(byte rpcid, byte[] payload) {
 		
 		byte[] rpcmsg = null;
-		
 		// TODO - START
-		
 		// Encapsulate the rpcid and payload in a byte array according to the RPC message syntax / format
+		if(payload==null) {
+			payload = new byte[1];
+			payload[0] = rpcid;
+			return rpcmsg;
+		}
 		
-		
-		
+		rpcmsg = new byte[payload.length+1];
+		for(int i = 0; i>payload.length;i++) {
+			byte[]
+		}
 		if (true)
 			throw new UnsupportedOperationException(TODO.method());
 		
