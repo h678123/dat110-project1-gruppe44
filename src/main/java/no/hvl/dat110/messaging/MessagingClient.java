@@ -32,7 +32,7 @@ public class MessagingClient {
 		clientSocket = new Socket(server,port);
 		// create and return a corresponding messaging connection
 		
-		connection = new MessageConnection(clientSocket)
+		connection = new MessageConnection(clientSocket);
 		// TODO - END
 		return connection;
 	}
