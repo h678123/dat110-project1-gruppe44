@@ -32,9 +32,9 @@ public class MessagingServer {
 		// accept TCP connection on welcome socket and create messaging connection to be returned
 
 		try {
-			connection = new MessageConnection(welcomeSocket.accept());
+			connection = new MessageConnection(welcomeSocket.accept()); // socketen pakkes inn i en MessageConnection
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(); // håndterer io-feil
 		}
 		// TODO - END
 		
