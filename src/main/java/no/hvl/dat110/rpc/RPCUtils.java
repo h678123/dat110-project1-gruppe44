@@ -19,8 +19,9 @@ public class RPCUtils {
 		
 		rpcmsg = new byte[payload.length+1];
 		for(int i = 0; i>payload.length;i++) {
-			byte[]
+			rpcmsg[i+1] = payload[i];
 		}
+		rpcmsg[0]=rpcid;
 		if (true)
 			throw new UnsupportedOperationException(TODO.method());
 		
