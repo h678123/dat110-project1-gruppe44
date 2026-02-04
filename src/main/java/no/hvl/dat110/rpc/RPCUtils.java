@@ -14,6 +14,8 @@ public class RPCUtils {
 		
 		// Encapsulate the rpcid and payload in a byte array according to the RPC message syntax / format
 		
+		
+		
 		if (true)
 			throw new UnsupportedOperationException(TODO.method());
 		
@@ -45,6 +47,8 @@ public class RPCUtils {
 		byte[] encoded = null;
 		
 		// TODO - START 
+		
+		
 		
 		if (true)
 			throw new UnsupportedOperationException(TODO.method());
