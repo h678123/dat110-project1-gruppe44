@@ -76,8 +76,7 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		decoded = new String(data, StandardCharsets.UTF_8);
 		
 		// TODO - END
 		
@@ -90,8 +89,7 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		encoded = new byte[0];
 				
 		// TODO - END
 		
@@ -103,8 +101,9 @@ public class RPCUtils {
 		
 		// TODO
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		if(data.length==0) {
+			throw new IllegalArgumentException("Dataen motatt er tom");
+		}
 		
 	}
 
@@ -137,9 +136,11 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		Integer y = x;
 		
+		encoded=y.byteValue();
+				
+				encoded = str.getBytes(StandardCharsets.UTF_8);
 		// TODO - END
 		
 		return encoded;
