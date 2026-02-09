@@ -135,8 +135,19 @@ public class RPCUtils {
 		byte[] encoded = null;
 		
 		// TODO - START 
-		
+		int s = 0;
 		Integer y = x;
+		
+		while(y!=0) {
+			s=s+1;
+			y=y/10;
+			
+		}
+		
+		y = x;
+		
+		encoded=new byte[s];
+		
 		int i = 0;
 		while(y!=0) {
 			Integer tallet= y%10;
@@ -163,7 +174,7 @@ public class RPCUtils {
 		String str = "";
 		
 		for(int i = 0; i<data.length; i++) {
-			str=str+data[i];
+			str=data[i]+str;
 		}
 		decoded = Integer.parseInt(str);
 		// TODO - END
