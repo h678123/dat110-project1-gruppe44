@@ -137,10 +137,17 @@ public class RPCUtils {
 		// TODO - START 
 		
 		Integer y = x;
+		int i = 0;
+		while(y!=0) {
+			Integer tallet= y%10;
+			
+			encoded[i]=tallet.byteValue();
+			
+			i++;
+			y=y/10;
+			
+		}
 		
-		encoded=y.byteValue();
-				
-				encoded = str.getBytes(StandardCharsets.UTF_8);
 		// TODO - END
 		
 		return encoded;
@@ -153,9 +160,12 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		String str = "";
 		
+		for(int i = 0; i<data.length; i++) {
+			str=str+data[i];
+		}
+		decoded = Integer.parseInt(str);
 		// TODO - END
 		
 		return decoded;
