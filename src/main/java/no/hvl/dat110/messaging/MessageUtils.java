@@ -12,55 +12,38 @@ public class MessageUtils {
 	public static String MESSAGINGHOST = "localhost";
 
 	public static byte[] encapsulate(Message message) {
-		
+
 		byte[] segment = null;
 		byte[] data;
 
 		// TODO - START
-		 // check format so it matches the message object
-		if (message == null || message.getData().length > Byte.MAX_VALUE) {
-			throw new IllegalArgumentException("Wrong payload");
-		}
-
-		// format segment
-		segment = new byte[1 + message.getData().length]; // +1 fordi vi har en header på 1 byte
- 		data = message.getData(); // henter melding
-		segment[0] = (byte) data.length; // segment header
-
-		// payload må starte fra 1.
-		// fyller segmentet med data
-		for (int i = 1; i < data.length; i++) {
-			segment[i] = data[i-1];
-		}
-
+		byte messageLength = (byte)message.getData().length; // henter lengden på meldingens data som byte (maks 127)
+		segment = new byte[128]; // oppretter ny segment med fast størrelse 128 bytes
+		segment[0] = messageLength; // setter første byte i segmentet til å være lengden på meldingen
+		System.arraycopy(message.getData(), 0, segment, 1, messageLength); // kopierer meldingsdataene til segmentet fra pos 1
 		// TODO - END
 		return segment;
-		
+
 	}
 
 	public static Message decapsulate(byte[] segment) {
 
 		Message message = null;
-		
+		byte[] newSegment;
+
 		// TODO - START
 		// decapsulate segment and put received payload data into a message
+		int segmentLength = segment[0]; // henter lendgen på meldingen fra første byte i segmentet
+		newSegment = new byte[segment[0]]; // oppretter nytt array for å holde meldingsdataene
+		System.arraycopy(segment, 1, newSegment, 0, segmentLength); // kopierer meldingsdataene fra segmentet fra pos 1
 
-		int segmentLength = segment[0]; // read segment length
-		byte[] data = new byte[segmentLength]; // create new object to transfer the data to
+		message = new Message(newSegment); // nytt message objekt med den dekapulerte dataen
 
-		// transfer data from the segment to our new created data object
-		for (int i = 1; i < segmentLength; i++ ) {
-			data[i-1] = segment[i];
-		}
 
-		// give the value of our created object
-		message = new Message(data);
-
-		
 		// TODO - END
-		
+
 		return message;
-		
+
 	}
-	
+
 }
