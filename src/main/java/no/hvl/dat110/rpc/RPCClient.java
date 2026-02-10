@@ -71,9 +71,11 @@ public class RPCClient {
 		
 		
 		Message msg = new Message(returnval);
-		
+			
+			
 			connection.send(msg);
-		
+			
+			
 			msg = connection.receive();
 			
 			returnval = msg.getData();
