@@ -69,7 +69,6 @@ public class RPCClient {
 		
 		returnval = utils.encapsulate(rpcid, param);
 		
-		connect();
 		
 		Message msg = new Message(returnval);
 		
