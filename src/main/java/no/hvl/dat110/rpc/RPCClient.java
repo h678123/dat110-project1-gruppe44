@@ -77,7 +77,11 @@ public class RPCClient {
 		
 			msg = connection.receive();
 			
-			returnval = utils.decapsulate(msg);
+			returnval = msg.getData();
+			
+			returnval = utils.decapsulate(returnval);
+			
+			
 		// TODO - END
 		return returnval;
 		
