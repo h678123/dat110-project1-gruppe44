@@ -17,12 +17,18 @@ public class RPCUtils {
 			payload[0] = rpcid;
 			return rpcmsg;
 		}
-		
-		rpcmsg = new byte[127];
+		if(payload.length>126) {
+			throw new IllegalArgumentException("Longer than 127 bytes");
+		}
+		else {
+			rpcmsg = new byte[127];
 		for(int i = 0; i<payload.length;i++) {
 			rpcmsg[i+1] = payload[i];
 		}
+		
 		rpcmsg[0]=rpcid;
+		}
+		
 		
 		// TODO - END
 		
@@ -75,8 +81,13 @@ public class RPCUtils {
 		String decoded = null; 
 		
 		// TODO - START 
+		int i = 0;
 		
-		decoded = new String(data, StandardCharsets.UTF_8);
+		while(i<data.length&&data[i] !=0) {
+			i++;
+		}
+		
+		decoded = new String(data, 0, i, StandardCharsets.UTF_8);
 		
 		// TODO - END
 		
