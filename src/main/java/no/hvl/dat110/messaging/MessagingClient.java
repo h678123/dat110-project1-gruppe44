@@ -29,11 +29,15 @@ public class MessagingClient {
 		
 		// TODO - START
 		// connect to messaging server using a TCP socket
-		clientSocket = new Socket(server,port);
 		// create and return a corresponding messaging connection
-		
-		connection = new MessageConnection(clientSocket);
+		try {
+			clientSocket = new Socket(server, port); // oppretter klient-socket som kobler seg til server og port
+		} catch (IOException e) {
+			throw new RuntimeException(e); // håndterer feil
+		}
+		connection = new MessageConnection(clientSocket); // oppretter objekt som håndterer sending og mottak av meldinger over tilkoblingen
 		// TODO - END
+
 		return connection;
 	}
 }
