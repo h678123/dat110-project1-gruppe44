@@ -10,15 +10,12 @@ public class Message {
 	// construction a Message with the data provided
 	public Message(byte[] data) {
 
-		// TODO - START
 		// hvis data er null, eller er større enn 127 får man error
 		if (data == null || data.length > 127) {
 			throw new RuntimeException("data cannot be null or longer than 127 bytes");
 		}
 
 		this.data = data;
-
-		// TODO - END
 	}
 
 	public byte[] getData() {

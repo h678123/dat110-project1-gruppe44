@@ -15,7 +15,7 @@ public class RPCUtils {
 		if(payload==null) {
 			payload = new byte[127];
 			payload[0] = rpcid;
-			return rpcmsg;
+			return rpcmsg; // TODO er dette en bug? returnerer null?
 		}
 		if(payload.length>126) {
 			throw new IllegalArgumentException("Longer than 127 bytes");
@@ -147,7 +147,7 @@ public class RPCUtils {
 		
 		// TODO - START 
 		int s = 0;
-		Integer y = x;
+		Integer y = x; //note hvorfor bruker du integer object?
 		
 		while(y!=0) {
 			s=s+1;
@@ -161,7 +161,7 @@ public class RPCUtils {
 		
 		int i = 0;
 		while(y!=0) {
-			Integer tallet= y%10;
+			Integer tallet= y%10; //note hvorfor ikke {tallet = (byte) y % 10} ?
 			
 			encoded[i]=tallet.byteValue();
 			
@@ -178,7 +178,7 @@ public class RPCUtils {
 	// byte array representation to integer
 	public static int unmarshallInteger(byte[] data) {
 		
-		int decoded = 0;
+		int decoded = 0; //note ?
 		
 		// TODO - START 
 		

@@ -8,7 +8,7 @@ import no.hvl.dat110.messaging.*;
 public class RPCClient {
 
 	// underlying messaging client used for RPC communication
-	private MessagingClient msgclient;
+	private MessagingClient msgclient; //note skal ikke endres uansett, sett final?
 
 	// underlying messaging connection used for RPC communication
 	private MessageConnection connection;
@@ -65,9 +65,9 @@ public class RPCClient {
 
 		*/
 				
-		RPCUtils utils = new RPCUtils();
+		RPCUtils utils = new RPCUtils(); //note  trenger ikke denne
 		
-		returnval = utils.encapsulate(rpcid, param);
+		returnval = utils.encapsulate(rpcid, param); //note når denne er static
 		
 		
 		Message msg = new Message(returnval);
@@ -80,7 +80,7 @@ public class RPCClient {
 			
 			returnval = msg.getData();
 			
-			returnval = utils.decapsulate(returnval);
+			returnval = utils.decapsulate(returnval); //note samme her
 			
 			
 		// TODO - END

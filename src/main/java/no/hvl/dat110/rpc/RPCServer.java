@@ -26,7 +26,7 @@ public class RPCServer {
 	public void run() {
 		
 		// the stop RPC method is built into the server
-		RPCRemoteImpl rpcstop = new RPCServerStopImpl(RPCCommon.RPIDSTOP,this);
+		RPCRemoteImpl rpcstop = new RPCServerStopImpl(RPCCommon.RPIDSTOP,this); // note aldri brukt?
 		
 		System.out.println("RPC SERVER RUN - Services: " + services.size());
 			
@@ -35,7 +35,7 @@ public class RPCServer {
 		System.out.println("RPC SERVER ACCEPTED");
 		
 		boolean stop = false;
-		
+		// note vi har 2 måter å stoppe server i samme metode? --- rpcstop og stop
 		while (!stop) {
 	    
 		   byte rpcid = 0;
@@ -59,7 +59,7 @@ public class RPCServer {
 		   
 		   RPCUtils utils = new RPCUtils();
 		   
-		   data = utils.decapsulate(data);
+		   data = utils.decapsulate(data); //note static metode, trenger ikke new object ⬆️
 		   
 		   RPCRemoteImpl impl = services.get(rpcid);
 		   

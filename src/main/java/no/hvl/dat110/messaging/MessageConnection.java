@@ -59,7 +59,7 @@ public class MessageConnection {
 		
 		data = new byte[128]; // oppretter buffer
 		try {
-			inStream.readFully(data); // leser fra tcp-forbindelsen
+			inStream.readFully(data); // leser fra tcp-forbindelsen //note og skriver inni data variabel
 		} catch (IOException e) {
 			throw new RuntimeException(e); // io-feil håndteres
 		}
