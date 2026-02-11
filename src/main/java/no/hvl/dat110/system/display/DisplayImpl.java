@@ -22,9 +22,9 @@ public class DisplayImpl extends RPCRemoteImpl {
 		// TODO - START: 
 		// implement unmarshalling, call, and marshall for write RPC method
 		// look at how this is done in the SensorImpl class for the read method
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		int val = RPCUtils.unmarshallInteger(param); // unmarshalled verdi
+		write(String.valueOf(val)); // gi til display
+		returnval = RPCUtils.marshallInteger(val); // si ok til nettverk
 		
 		// TODO - END
 		
