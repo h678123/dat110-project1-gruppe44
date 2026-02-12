@@ -141,18 +141,38 @@ public class RPCUtils {
 	}
 
 	// integer to byte array representation
+	// integer to byte array representation
 	public static byte[] marshallInteger(int x) {
-		
+
 		byte[] encoded = null;
-		
-		// TODO - START 
-		encoded = new byte[4];
-		encoded[0] = (byte)(x >> 24);
-		encoded[1] = (byte)(x >> 16);
-		encoded[2] = (byte)(x >> 8);
-		encoded[3] = (byte)x;
+
+		// TODO - START
+		int s = 0;
+		Integer y = x; //note hvorfor bruker du integer object?
+
+		while(y!=0) {
+			s=s+1;
+			y=y/10;
+
+		}
+
+		y = x;
+
+		encoded=new byte[s];
+
+		int i = 0;
+		while(y!=0) {
+			Integer tallet= y%10; //note hvorfor ikke {tallet = (byte) y % 10} ?
+
+			encoded[i]=tallet.byteValue();
+
+			i++;
+			y=y/10;
+
+		}
+
 		// TODO - END
-		
+
 		return encoded;
 	}
 	

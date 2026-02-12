@@ -9,7 +9,7 @@ import no.hvl.dat110.system.display.DisplayDevice;
 import no.hvl.dat110.system.sensor.SensorDevice;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class TestSystem {
+class 	TestSystem {
 
 	@Test
 	void test() {
