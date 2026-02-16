@@ -11,7 +11,7 @@ import no.hvl.dat110.messaging.Message;
 import no.hvl.dat110.messaging.MessageUtils;
 
 class TestMessage {
-
+//handin
 	private byte[] createData (int size) {
 	
 		byte[] data = new byte[size];
