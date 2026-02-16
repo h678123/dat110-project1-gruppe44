@@ -144,32 +144,16 @@ public class RPCUtils {
 	// integer to byte array representation
 	public static byte[] marshallInteger(int x) {
 
-		byte[] encoded = null;
+		byte[] encoded = new byte[4];
 
 		// TODO - START
-		int s = 0;
-		Integer y = x; //note hvorfor bruker du integer object?
-
-		while(y!=0) {
-			s=s+1;
-			y=y/10;
-
-		}
-
-		y = x;
-
-		encoded=new byte[s];
-
-		int i = 0;
-		while(y!=0) {
-			Integer tallet= y%10; //note hvorfor ikke {tallet = (byte) y % 10} ?
-
-			encoded[i]=tallet.byteValue();
-
-			i++;
-			y=y/10;
-
-		}
+		// flytter første 8 bytes 24 bits til høyre
+		// andre set med bytes 16 osv..
+		// dette er for å sammenligne med 11111111 og få satt de inn i arrayen
+		encoded[0] = (byte) ((x >> 24) & 0xFF);
+		encoded[1] = (byte) ((x >> 16) & 0xFF);
+		encoded[2] = (byte) ((x >> 8) & 0xFF);
+		encoded[3] = (byte) (x & 0xFF);
 
 		// TODO - END
 
@@ -179,16 +163,14 @@ public class RPCUtils {
 	// byte array representation to integer
 	public static int unmarshallInteger(byte[] data) {
 		
-		int decoded = 0; //note ?
+		int decoded = 0;
 		
 		// TODO - START 
-		
-		String str = "";
-		
-		for(int i = 0; i<data.length; i++) {
-			str=data[i]+str;
-		}
-		decoded = Integer.parseInt(str);
+
+		decoded |= (data[0] & 0xFF) << 24;
+		decoded |= (data[1] & 0xFF) << 16;
+		decoded |= (data[2] & 0xFF) << 8;
+		decoded |= (data[3] & 0xFF);
 		// TODO - END
 		
 		return decoded;
