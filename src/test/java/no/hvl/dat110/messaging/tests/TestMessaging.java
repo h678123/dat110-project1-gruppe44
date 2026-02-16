@@ -59,8 +59,12 @@ public class TestMessaging {
 
 			}
 		};
-
-		Thread client = new Thread() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        Thread client = new Thread() {
 
 			public void run() {
 
